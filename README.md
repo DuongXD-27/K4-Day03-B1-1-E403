@@ -71,3 +71,40 @@ timeline
 
 > 🚀 **BẮT ĐẦU LÀM BÀI**:
 > Vui lòng mở sổ tay thực hành 👉 **[PHAN_CONG_CONG_VIEC.md](file:///c:/Users/Admin/Documents/VinUni/LabCoachVin/LabKeyCoach/Day-3-Lab-Chatbot-vs-react-agent-E402/docs/PHAN_CONG_CONG_VIEC.md)** để xem phân vai và checklist công việc cụ thể cho từng thành viên!
+
+---
+
+## Tool tìm nhà trọ/căn hộ cho thuê
+
+Tool `search_rentals` đọc tin công khai từ Batdongsan.com.vn, hỗ trợ lọc theo
+quận/phường/đường, từ khóa, giá thuê, diện tích và loại bất động sản. Giá truyền
+vào dùng đơn vị **triệu đồng/tháng**.
+
+```powershell
+pip install -r requirements.txt
+python -m src.rental_search --location "Cầu Giấy" --keyword "full nội thất" --max-price 5 --min-area 20
+```
+
+Tìm cả phòng trọ và căn hộ:
+
+```powershell
+python -m src.rental_search --type tat_ca --location "Nam Từ Liêm" --min-price 3 --max-price 10 --limit 10
+```
+
+Gọi từ Python hoặc ReAct Agent:
+
+```python
+from src.tools import search_rentals
+
+result_json = search_rentals(
+    location="Thanh Xuân",
+    keyword="ban công",
+    max_price=5,
+    min_area=20,
+    property_type="phong_tro",
+)
+```
+
+Tool giới hạn truy cập tối đa 3 trang/lần, không đăng nhập và không vượt CAPTCHA.
+Nếu website trả Cloudflare/HTTP 403, kết quả sẽ kèm cảnh báo và URL nguồn để mở
+trực tiếp trên trình duyệt.

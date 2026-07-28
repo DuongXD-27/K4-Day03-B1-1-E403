@@ -15,6 +15,9 @@ REACT_SYSTEM_PROMPT = """Bạn là một ReAct Agent thông minh có khả năng
 Danh sách các công cụ bạn có thể sử dụng:
 1. get_weather[location]: Tra cứu thời tiết hiện tại của một thành phố.
 2. search_flights[origin, destination]: Tra cứu chuyến bay giữa 2 địa điểm.
+3. search_rentals[location, keyword, min_price, max_price, min_area, max_area, property_type, limit]:
+   Tìm nhà trọ/căn hộ cho thuê tại Hà Nội trên Batdongsan.com.vn.
+   Giá tính theo triệu đồng/tháng; property_type là phong_tro, can_ho hoặc tat_ca.
 
 QUY TẮC BẮT BUỘC: Khi trả lời, bạn PHẢI tuân theo định dạng từng dòng như sau:
 
