@@ -7,11 +7,11 @@
 
 | Tiêu chí | Điểm (1-5) | Lý do đánh giá |
 | :--- | :---: | :--- |
-| 🧠 **Multi-step Reasoning** | `4/5` | Cần suy luận từ tra cứu thời tiết đến chọn trang phục. |
-| 🛠️ **Tool Interaction** | `5/5` | Cần tra cứu dữ liệu thời gian thực qua API thời tiết/chuyến bay. |
-| 🔀 **Dynamic Decision** | `4/5` | Kết quả bước trước quyết định hành động bước sau. |
-| ⏳ **Long Horizon** | `3/5` | Quy trình gồm 2-3 bước xử lý ngắn. |
-| **TỔNG ĐIỂM FIT** | **16/20** | **KẾT LUẬN: BÀI TOÁN RẤT NÊN DÙNG REACT AGENT!** |
+| 🧠 **Multi-step Reasoning** | `5/5` | Người dùng thường cần đi qua nhiều bước: xác định khu vực/ngân sách, lọc loại phòng, xem chi tiết căn phù hợp, kiểm tra lịch trống rồi mới quyết định đặt lịch xem nhà. |
+| 🛠️ **Tool Interaction** | `5/5` | Cần tra cứu dữ liệu động như danh sách phòng/căn hộ, giá thuê, trạng thái còn trống, lịch xem nhà và thông tin đặt lịch. Chatbot thuần không thể tự xác minh các dữ liệu này. |
+| 🔀 **Dynamic Decision** | `4/5` | Kết quả ở mỗi bước ảnh hưởng đến bước tiếp theo: nếu không có căn đúng ngân sách thì cần gợi ý phương án gần nhất; nếu lịch xem đã kín thì cần đề xuất khung giờ hoặc căn khác. |
+| ⏳ **Long Horizon** | `4/5` | Quy trình có thể kéo dài qua 3-5 bước, từ tìm kiếm, so sánh, xác minh điều kiện thuê, hỏi thêm thông tin còn thiếu đến đặt lịch xem. |
+| **TỔNG ĐIỂM FIT** | **18/20** | **KẾT LUẬN: BÀI TOÁN TÌM & ĐẶT LỊCH XEM NHÀ TRỌ / CĂN HỘ RẤT PHÙ HỢP ĐỂ DÙNG REACT AGENT!** |
 
 ---
 
