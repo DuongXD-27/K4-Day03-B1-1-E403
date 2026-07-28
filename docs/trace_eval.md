@@ -64,7 +64,7 @@ Observation: {
 }
 
 Thought: Tôi đã tìm thấy 1 phòng trọ phù hợp với yêu cầu của bạn tại Cầu Giấy dưới 4 triệu đồng, có điều hòa và chỗ để xe. Tôi sẽ tóm tắt thông tin chi tiết của phòng này.
-Final Answer: Tìm thấy phòng CG102: Phòng trọ Cầu Giấy có điều hòa, để xe tầng 1; giá 3.8 triệu/tháng; diện tích 22 m²; vị trí Cầu Giấy, Hà Nội; link https://example.com/rentals/CG102. Nếu muốn hẹn lịch xem phòng, người dùng cần cung cấp ngày muốn xem để Agent kiểm tra khung giờ trống.
+Final Answer: Tìm thấy phòng CG102: Phòng trọ Cầu Giấy có điều hòa, để xe tầng 1; giá 3.8 triệu/tháng; diện tích 22 m²; vị trí Cầu Giấy, Hà Nội; link  https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-ha-noi/rentals/CG102. Nếu muốn hẹn lịch xem phòng, người dùng cần cung cấp ngày muốn xem để Agent kiểm tra khung giờ trống.
 ```
 
 * **Nhận xét**: Agent đã gọi đúng tool `search_rentals` với khu vực `Cầu Giấy`, ngân sách tối đa `4` triệu, loại `phong_tro` và keyword đúng yêu cầu. Observation có bằng chứng rõ ràng (`listing_id`, giá, diện tích, vị trí, URL). Agent dừng đúng lúc bằng `Final Answer` và không tự đặt lịch khi người dùng chưa cung cấp ngày xem.
