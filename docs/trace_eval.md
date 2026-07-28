@@ -17,16 +17,18 @@
 
 ## 🔍 2. SO SÁNH PHẢN HỒI (TEST CASE #3)
 
-**Câu hỏi**: *"Thời tiết ở Hà Nội hôm nay thế nào và tôi nên mặc gì đi chơi?"*
+**Câu hỏi**: *"Tìm giúp tôi phòng trọ ở Cầu Giấy dưới 4 triệu, ưu tiên có điều hòa và chỗ để xe."*
 
 ### 🤖 Chatbot Baseline:
-* **Phản hồi**: *"Tôi không có truy cập Internet thời gian thực nên không biết thời tiết hôm nay ở Hà Nội."*
-* **Nhận xét**: An toàn nhưng không giải quyết được nhu cầu thực tế của người dùng.
+* **Phản hồi tóm tắt**: Chatbot tư vấn rằng với ngân sách dưới 4 triệu, người dùng có thể tìm phòng khép kín/chung cư mini/phòng trong nhà nguyên căn tại Cầu Giấy, ưu tiên các khu như Mai Dịch, Hồ Tùng Mậu, Trần Bình, Quan Hoa, Nguyễn Khánh Toàn, Nguyễn Phong Sắc, Yên Hòa và Trung Kính. Chatbot cũng nhắc người dùng kiểm tra phí gửi xe, điện nước, phí dịch vụ, hợp đồng, và nên xem phòng trực tiếp.
+* **Câu fallback quan trọng**: *"Do thông tin cho thuê thay đổi rất nhanh theo ngày, mình chưa thể xác minh trực tiếp các tin đăng cụ thể, địa chỉ chính xác hay tình trạng phòng còn trống."*
+* **Phân loại output**: `safe fallback + tư vấn chung`
+* **Nhận xét**: Chatbot không bịa ra mã căn, địa chỉ cụ thể, số điện thoại chủ nhà hay lịch xem nhà. Tuy nhiên, các nhận định như khu vực dễ tìm phòng, khoảng giá và diện tích vẫn chỉ là tư vấn ước lượng, chưa có bằng chứng từ tool hoặc dữ liệu tin đăng thực tế.
 
 ### 🧠 ReAct Agent:
-* **Thought 1**: Cần tra cứu thời tiết Hà Nội.
-* **Action 1**: `get_weather['Hà Nội']`
-* **Observation 1**: `Thời tiết Hà Nội: 28°C, Nắng nhẹ, Độ ẩm 65%.`
-* **Thought 2**: Đã có thông tin 28°C nắng nhẹ, đưa ra lời khuyên trang phục.
-* **Final Answer**: *"Thời tiết Hà Nội hôm nay 28°C, nắng nhẹ. Bạn nên mặc quần áo thoáng mát!"*
-* **Nhận xét**: Hoàn thành xuất sắc nhiệm vụ nhờ sự kết hợp giữa suy luận và công cụ.
+* **Thought 1**: Câu hỏi cần tra cứu thông tin thuê nhà.
+* **Action 1**: `search_rentals['Hà Nội']`
+* **Observation 1**: Tool trả về dữ liệu từ nguồn `batdongsan.com.vn` với bộ lọc khu vực Hà Nội.
+* **Thought 2**: Agent cho rằng đã có thông tin thuê nhà và có thể tư vấn.
+* **Final Answer**: *"Có nhiều phòng trọ ở Hà Nội phù hợp với yêu cầu của bạn!"*
+* **Nhận xét**: Agent đã gọi tool nhưng truy vấn còn quá rộng (`Hà Nội` thay vì `Cầu Giấy`, ngân sách dưới 4 triệu, điều hòa, chỗ để xe). Câu trả lời cuối còn chung chung, chưa trích xuất rõ căn/phòng phù hợp từ Observation.
