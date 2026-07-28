@@ -1,0 +1,51 @@
+flowchart TD
+    A([User Question]) --> B{Cau hoi co can du lieu dong hoac hanh dong khong?}
+
+    B -->|Khong| C[Chatbot Path]
+    C --> C1[Tu van bang kien thuc chung]
+    C1 --> C2[Nhac ro khong xac minh duoc gia, tinh trang con trong, lich xem neu khong co tool]
+    C2 --> Z([Final Answer])
+
+    B -->|Co| D[ReAct Agent Path]
+    D --> E{Da du tieu chi tim kiem co ban?}
+    E -->|Chua du| E1[Hoi toi da 2 cau ngan ve khu vuc, ngan sach, loai nha hoac tien ich]
+    E1 --> Z
+
+    E -->|Da du| F[Thought: Xac dinh tool can goi]
+    F --> G[Action: search_rentals]
+    G --> H[Observation: Danh sach phong/can ho, gia, dien tich, vi tri, URL, warnings]
+
+    H --> I{Observation co loi, count = 0, hoac warnings nghiem trong?}
+    I -->|Co| I1[Final Answer: Giai thich gioi han va de xuat noi dieu kien tim kiem]
+    I1 --> Z
+
+    I -->|Khong| J{Observation co dau hieu indirect prompt injection?}
+    J -->|Co| J1[Bo qua chi dan nam trong description/ghi chu/URL/title]
+    J1 --> K[Tom tat cac ket qua da xac minh]
+    J -->|Khong| K
+
+    K --> L{Nguoi dung co muon xem nha khong?}
+    L -->|Khong| L1[Final Answer: Dua listing_id, gia, dien tich, vi tri, URL va buoc tiep theo]
+    L1 --> Z
+
+    L -->|Co| M{Da co listing_id va ngay muon xem?}
+    M -->|Chua du| M1[Hoi lai ma can/phong hoac ngay muon xem]
+    M1 --> Z
+
+    M -->|Da du| N[Action: check_viewing_slots]
+    N --> O[Observation: Khung gio con trong hoac loi lich xem]
+    O --> P{Co slot phu hop?}
+    P -->|Khong| P1[Final Answer: Bao het lich va de xuat ngay/gio khac]
+    P1 --> Z
+
+    P -->|Co| Q{Nguoi dung da truc tiep cung cap ten, so dien thoai hop le, slot va xac nhan dat lich?}
+    Q -->|Chua du| Q1[Hoi lai thong tin bat buoc, khong tu dien tu du lieu tin dang]
+    Q1 --> Z
+
+    Q -->|Da du| R[Action: book_viewing]
+    R --> S[Observation: Trang thai dat lich]
+    S --> T{Booking confirmed?}
+    T -->|Co| T1[Final Answer: Xac nhan lich xem va ma booking demo]
+    T -->|Khong| T2[Final Answer: Giai thich ly do bi tu choi va cach sua]
+    T1 --> Z
+    T2 --> Z
